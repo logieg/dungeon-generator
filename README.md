@@ -1,13 +1,17 @@
 # Catfish Dungeon Generator
 A random roguelike dungeon generator intended to be used as inspiration for roleplaying oneshots
 
-Created with NextJS and a couple ounces of time
+Created with NextJS, Typescript, and a couple ounces of time
 
 ## Setting Up
 - Clone the repo
 - Run `npm install`
 - Run `npm run dev`
 - Go to `localhost:3000` in a browser
+
+## Other Commands
+- Build and start an optimized production server with `npm run build` and `npm run start`
+- Export a client-only static build with `npm run export`
 
 ## Intention
 This project was a sudden idea to make a random dungeon generator that would act as a visual and textual prompt for roleplaying oneshots (for example, D&D), with a thematic focus on being a roguelike dungeon crawler experience.  It does not and will not generate a full, comprehensive, or even necessarily understandable dungeon, but it _will_ provide some fun randomly-generated ideas and layouts you can use to inspire your own sessions.
