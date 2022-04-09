@@ -21,7 +21,7 @@ const Navigation = () => {
   return (
     <>
       <AppBar
-        position="static"
+        position="sticky"
         style={{ backgroundColor: "rebeccapurple" }}
       >
         <Toolbar>
@@ -42,7 +42,7 @@ const Navigation = () => {
         <Drawer open={menuOpen} onClose={toggleDrawer}>
           <List>
             <ListItem>
-              <Typography variant="h6">Generation Options</Typography>
+              <Typography variant="h6">Available Generators</Typography>
             </ListItem>
           </List>
           <Divider />
