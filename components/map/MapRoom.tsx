@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import { Room } from "../../utils/mapGenerator";
+import { v4 as uuidv4 } from 'uuid';
 
 interface MapRoomProps {
   room?: Room;
@@ -7,10 +8,15 @@ interface MapRoomProps {
 
 const MapRoom = ({ room }: MapRoomProps) => {
   return (
-    <span style={{ width: '120px', height: '100px', padding: '6px', border: '1px solid #ccc', display: 'inline-block' }}>
+    <div style={{ width: '120px', height: '100px', padding: '6px', border: '1px solid #ccc', display: 'inline-block' }}>
       <Typography variant="subtitle2">{room.name}</Typography>
-    </span>
-  )
+      {room.contents.map(content => (
+        <Tooltip title={content.description} key={uuidv4()}>
+          <Typography variant="caption">{content.type}<br /></Typography>
+        </Tooltip>
+      ))}
+    </div>
+  );
 }
 
 export default MapRoom;

@@ -1,7 +1,6 @@
-import dungeonNames from '../data/placeholder/dungeonNames.json';
-import adjectives from '../data/general/adjectives.json';
-import nouns from '../data/general/nouns.json';
-import { randomIndex } from './random';
+import dungeonNames from '../data/names/dungeonNames.json';
+import { generateEncounter } from './encounterGenerator';
+import { randomAdjective, randomIndex, randomNoun, randomRange } from './random';
 
 /** Single room with position and content info */
 export interface Room {
@@ -45,20 +44,24 @@ export function generateMap({
 /** Use a list of adjectives and nouns to fill a predefined template for a dungeon name */
 function generateMapName() {
   const template = dungeonNames[randomIndex(dungeonNames.length)];
-  const adjective = adjectives[randomIndex(adjectives.length)];
-  const noun = nouns[randomIndex(nouns.length)];
+  const adjective = randomAdjective();
+  const noun = randomNoun();
   return template
     .replaceAll("{adjective}", `${adjective[0].toUpperCase()}${adjective.substring(1)}`)
     .replaceAll("{noun}", `${noun[0].toUpperCase()}${noun.substring(1)}`);
 }
 
-/** Construct a blank room */
+/** Construct a room with some random encounter contents */
 function generateRoom(x: number, y: number, width = 1, height = 1) {
+  const contents = [];
+  const encounterCount = randomRange(0, 3);
+  for (let i = 0; i < encounterCount; i++)
+    contents.push(generateEncounter());
   const room: Room = {
     name: `Room #${Math.floor(Math.random() * 1000)}`, // TEMP NAME
     start: { x: x, y: y },
     end: { x: x + width, y: y + height },
-    contents: []
+    contents: contents
   };
   return room;
 }
